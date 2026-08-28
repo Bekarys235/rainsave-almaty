@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RainSave Almaty — Ресми өтініш алаңы</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        #map { height: 380px; width: 100%; border-radius: 0.75rem; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-blue-600 text-white p-2 rounded-lg font-bold text-xl">🌧️</div>
+                <span class="font-bold text-xl text-slate-900 tracking-tight">RainSave Almaty</span>
+            </div>
+            <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
+                <a href="#petition" class="hover:text-blue-600 transition">Әкімдікке өтініш</a>
+                <a href="#about" class="hover:text-blue-600 transition">Жоба туралы</a>
+                <a href="#results" class="hover:text-blue-600 transition">Зерттеу нәтижелері</a>
+                <a href="#system" class="hover:text-blue-600 transition">RainSave жүйесі</a>
+                <a href="#map-section" class="hover:text-blue-600 transition">Интерактивті карта</a>
+            </div>
+            <a href="#petition" class="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg transition shadow-sm font-medium">
+                Өтінішті өңдеу
+            </a>
+        </div>
+    </nav>
+
+    <section id="petition" class="relative bg-gradient-to-b from-blue-900 via-slate-900 to-slate-900 text-white py-20">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="inline-block bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs px-3 py-1 rounded-full mb-6 font-semibold uppercase tracking-wider">
+                Ресми электронды ұсыныс алаңы
+            </div>
+            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
+                Алматы қаласында жауын суын тиімді пайдалану туралы ұсыныс
+            </h1>
+            <p class="text-slate-300 text-lg mb-8 leading-relaxed">
+                <strong>Құрметті Алматы қаласының әкімдігі!</strong><br>
+                №12 мамандандырылған гимназияның зерттеуші авторлары (Алиқұл А., Сманова Е.) Алматы қаласындағы жауын суының химиялық құрамын зерттеп, оның тұрмыстық-техникалық мақсаттарға жарамдылығын ғылыми негізде дәлелдеді.
+            </p>
+
+            <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 mb-8 space-y-4 text-slate-200">
+                <p><strong>Зерттеу қорытындысы:</strong> Жауын суы сүзу кезеңдерінен кейін көгалдарды суаруға, аумақтарды жууға, көлік жууға және санитарлық-техникалық жүйелерде пайдалануға толық жарамды.</p>
+                <p><strong>Мәселе:</strong> Қазіргі уақытта жауын суының басым бөлігі нөсер кәріздері арқылы ағып кетеді, ал бұл уақытта техникалық қажеттіліктерге қымбат ауыз су жұмсалуда.</p>
+                <p><strong>Шешім:</strong> «RainSave Almaty» инновациялық жүйесін қала мектептері мен қоғамдық ғимараттарында пилоттық жоба ретінде енгізуді ұсынамыз.</p>
+            </div>
+
+            <div class="flex flex-wrap gap-4">
+                <a href="#system" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg transition">
+                    «RainSave Almaty» моделін көру
+                </a>
+                <a href="#results" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-6 py-3 rounded-xl font-semibold border border-slate-700 transition">
+                    Химиялық сараптама деректері
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-12 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <span class="text-xs text-slate-500 font-bold uppercase">Білім мекемесі</span>
+                    <p class="text-sm font-semibold text-slate-900 mt-1">№12 мамандандырылған гимназия, Алматы қ.</p>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <span class="text-xs text-slate-500 font-bold uppercase">Жоба авторлары</span>
+                    <p class="text-sm font-semibold text-slate-900 mt-1">Алиқұл Арайлым, Сманова Еркенур (11-сынып)</p>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <span class="text-xs text-slate-500 font-bold uppercase">Ғылыми жетекші</span>
+                    <p class="text-sm font-semibold text-slate-900 mt-1">Паримбекова А.М. (Педагог-шебер)</p>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <span class="text-xs text-slate-500 font-bold uppercase">Бағыты мен Секциясы</span>
+                    <p class="text-sm font-semibold text-slate-900 mt-1">ЖМБ / Қоршаған орта химиясы (2026 ж.)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-3xl font-bold text-slate-900">Зертханалық зерттеу нәтижелері</h2>
+            <p class="text-slate-600 mt-2">Алматы қаласының 3 түрлі экологиялық аймағынан алынған су сынамаларының физикалық-химиялық көрсеткіштері.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center">
+                    <span class="w-3 h-3 bg-blue-600 rounded-full mr-2"></span>
+                    Физикалық-химиялық көрсеткіштер кестесі
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left text-slate-600">
+                        <thead class="text-xs text-slate-700 uppercase bg-slate-100">
+                            <tr>
+                                <th class="py-3 px-3">Көрсеткіш</th>
+                                <th class="py-3 px-3">І аймақ (Көше)</th>
+                                <th class="py-3 px-3">ІІ аймақ (Тұрғын)</th>
+                                <th class="py-3 px-3">ІІІ аймақ (Саябақ)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr><td class="py-2 px-3 font-medium">pH көрсеткіші</td><td class="py-2 px-3">6,2</td><td class="py-2 px-3">6,5</td><td class="py-2 px-3">6,7</td></tr>
+                            <tr><td class="py-2 px-3 font-medium">Электрөткізгіштік (µS/см)</td><td class="py-2 px-3">112</td><td class="py-2 px-3">86</td><td class="py-2 px-3">64</td></tr>
+                            <tr><td class="py-2 px-3 font-medium">Минералдану (TDS), мг/л</td><td class="py-2 px-3">71</td><td class="py-2 px-3">55</td><td class="py-2 px-3">40</td></tr>
+                            <tr><td class="py-2 px-3 font-medium">Жалпы қаттылық, мг/л</td><td class="py-2 px-3">28</td><td class="py-2 px-3">22</td><td class="py-2 px-3">18</td></tr>
+                            <tr><td class="py-2 px-3 font-medium">Нитраттар, мг/л</td><td class="py-2 px-3">1,9</td><td class="py-2 px-3">1,2</td><td class="py-2 px-3">0,8</td></tr>
+                            <tr><td class="py-2 px-3 font-medium">Сульфаттар, мг/л</td><td class="py-2 px-3">18</td><td class="py-2 px-3">14</td><td class="py-2 px-3">10</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                <h3 class="text-lg font-bold text-slate-900 mb-4">Жалпы минералдану (TDS) мен pH салыстырмасы</h3>
+                <canvas id="tdsChart" class="w-full h-64"></canvas>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <h3 class="text-lg font-bold text-slate-900 mb-4">Жауын суының қолданылу бағыттарын бағалау</h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl">
+                    <h4 class="font-bold text-emerald-900 flex items-center">✔ Тұрмыстық-техникалық мақсаттарға ЖАРАМДЫ</h4>
+                    <ul class="text-sm text-emerald-800 mt-2 space-y-1 list-disc list-inside">
+                        <li>Көгалдарды, ағаштар мен гүлдерді суару</li>
+                        <li>Аула мен жолдарды жуу</li>
+                        <li>Дәретхана жүйелерін сумен камтамасыз ету</li>
+                        <li>Автокөліктерді жуу (Дақ қалдырмайды)</li>
+                    </ul>
+                </div>
+                <div class="p-4 bg-rose-50 border border-rose-200 rounded-xl">
+                    <h4 class="font-bold text-rose-900 flex items-center">✘ Ишуге және тамаққа ЖАРАМСЫЗ</h4>
+                    <ul class="text-sm text-rose-800 mt-2 space-y-1 list-disc list-inside">
+                        <li>Ауыз су ретінде қолдану (Тікелей)</li>
+                        <li>Тамақ дайындау</li>
+                        <li>Арнайы ультракүлгін немесе бактерицидтік өңдеусіз тұтыну</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="system" class="py-16 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-slate-900">«RainSave Almaty» Инженерлік Жүйесі</h2>
+                <p class="text-slate-600 mt-2">Алматы климатына бейімделген 6 сатылы автокешенді модель.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold mb-4">1</div>
+                    <h3 class="font-bold text-slate-900 mb-2">Су жинау бөлігі</h3>
+                    <p class="text-sm text-slate-600">Ғимарат шатырына орнатылған арнайы науалар арқылы су ағыны жиналады.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold mb-4">2</div>
+                    <h3 class="font-bold text-slate-900 mb-2">First Flush (Алғашқы ағын)</h3>
+                    <p class="text-sm text-slate-600">Алғашқы ластанған 10-15 литр су жеке ыдысқа жіберіліп, негізгі бакқа өтуі бұғатталады.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold mb-4">3</div>
+                    <h3 class="font-bold text-slate-900 mb-2">Көпқабатты сүзгі блогы</h3>
+                    <p class="text-sm text-slate-600">Ірі тор → Кварц құмы → Белсендірілген көмір → Синтетикалық мақта қабаттары арқылы өтеді.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold mb-4">4</div>
+                    <h3 class="font-bold text-slate-900 mb-2">Жабық сақтау резервуары</h3>
+                    <p class="text-sm text-slate-600">Жарық түспейтін пластик бак. Бұл қайта ластануды және балдырлардың өсуін тоқтатады.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold mb-4">5</div>
+                    <h3 class="font-bold text-slate-900 mb-2">Су тарату жүйесі</h3>
+                    <p class="text-sm text-slate-600">Шағын сорғы немесе өздігінен ағу (гравитация) арқылы қажетті тораптарға бағытталады.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold mb-4">6</div>
+                    <h3 class="font-bold text-slate-900 mb-2">Нысандарда пайдалану</h3>
+                    <p class="text-sm text-slate-600">Мектеп ауласын суару, унитаз бачоктары, аула жуу сияқты техникалық қажеттіліктер.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="map-section" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-8">
+            <h2 class="text-3xl font-bold text-slate-900">Цифрлық мониторинг интерактивті картасы</h2>
+            <p class="text-slate-600 mt-2">Алматы қаласындағы зерттеу жүргізілген нүктелер және олардың су сапасы индекстері.</p>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+            <div id="map"></div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p class="mb-4">«RainSave Almaty» — Ғылыми-практикалық жоба жобасы. №12 мамандандырылған гимназия, 2026 жыл.</p>
+            <p class="text-slate-500">Әдебиеттер мен нормативтік деректер: ҚР Су Кодексі, Қазгидромет 2025-2026 жж., WHO Guidelines for Water Quality.</p>
+        </div>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('tdsChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['І аймақ (Көше)', 'ІІ аймақ (Тұрғын)', 'ІІІ аймақ (Саябақ)'],
+                datasets: [{
+                    label: 'Минералдану TDS (мг/л)',
+                    data: [71, 55, 40],
+                    backgroundColor: ['#3b82f6', '#60a5fa', '#93c5fd'],
+                    borderRadius: 8
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+
+        const map = L.map('map').setView([43.238949, 76.889709], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        L.marker([43.300000, 76.950000]).addTo(map)
+            .bindPopup('<b>І аймақ: Құлжа тракті</b><br>TDS: 71 мг/л | pH: 6.2');
+        L.marker([43.230000, 76.900000]).addTo(map)
+            .bindPopup('<b>ІІ аймақ: Ищшан Қоңыр, 136</b><br>TDS: 55 мг/л | pH: 6.5');
+        L.marker([43.220000, 76.915000]).addTo(map)
+            .bindPopup('<b>ІІІ аймақ: Ботаникалық бақ</b><br>TDS: 40 мг/л | pH: 6.7');
+    </script>
+</body>
+</html>
