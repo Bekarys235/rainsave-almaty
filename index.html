@@ -4,22 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RainSave Almaty — Ресми өтініш алаңы</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js (Графиктер үшін) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Leaflet.js (Интерактивті карта үшін) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        #map { height: 380px; width: 100%; border-radius: 0.75rem; }
+        #map { height: 420px; width: 100%; border-radius: 0.75rem; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body class="bg-slate-50 text-slate-800 antialiased">
 
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+    <!-- Навигация -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="bg-blue-600 text-white p-2 rounded-lg font-bold text-xl">🌧️</div>
+                <span class="text-2xl">🌧️</span>
                 <span class="font-bold text-xl text-slate-900 tracking-tight">RainSave Almaty</span>
             </div>
             <div class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
@@ -30,11 +35,49 @@
                 <a href="#qr-section" class="hover:text-blue-600 transition">QR-кодтар</a>
                 <a href="#map-section" class="hover:text-blue-600 transition">Интерактивті карта</a>
             </div>
-            <a href="#petition" class="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg transition shadow-sm font-medium">
+            <a href="#petition" class="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg transition font-medium">
                 Өтінішті өңдеу
             </a>
         </div>
     </nav>
+
+    <!-- Басқы Hero Секция (Тұтас, табиғи әрі ресми ұзын мәтін) -->
+    <section id="petition" class="bg-slate-900 text-white py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <span class="text-blue-400 text-sm font-semibold uppercase tracking-wider">Ресми электронды ұсыныс алаңы</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mt-2 mb-8 leading-tight">
+                Алматы қаласында жауын суын тиімді пайдалану туралы ұсыныс
+            </h1>
+
+            <div class="text-slate-200 text-base leading-relaxed space-y-6">
+                <p>
+                    <strong>Құрметті Алматы қаласының әкімдігі!</strong><br>
+                    №12 мамандандырылған гимназияның зерттеуші авторлары (Аликул А., Сманова Е.) Алматы қаласындағы жауын суының химиялық құрамын зерттеп, оның тұрмыстық-техникалық мақсаттарға жарамдылығын ғылыми негізде дәлелдеді. Зерттеу қорытындысы бойынша жауын суы сүзу кезеңдерінен кейін көгалдарды суаруға, аумақтарды жууға, көлік жууға және санитарлық-техникалық жүйелерде пайдалануға толық жарамды. Қазіргі уақытта жауын суының басым бөлігі нөсер кәріздері арқылы ағып кетеді, ал бұл уақытта техникалық қажеттіліктерге қымбат ауыз су жұмсалуда.
+                </p>
+
+                <p>
+                    Зерттеу нәтижесінде әзірленген «RainSave Almaty» жүйесін Алматы қаласының мектептерінде, қоғамдық ғимараттарында және жеке тұрғын үйлерде пилоттық жоба ретінде сынақтан өткізуді ұсынамыз. Жүйе мынадай негізгі кезеңдерден тұрады: жауын суын жинау &rarr; алғашқы ластанған суды бөлу &rarr; сүзу &rarr; жабық резервуарда сақтау &rarr; техникалық мақсаттарға қайта пайдалану.
+                </p>
+
+                <p>
+                    «RainSave Almaty» жүйесін енгізу: ауыз суды техникалық мақсаттарға жұмсауды азайтуға; су ресурстарын ұтымды пайдалануға; жауын суын қайта пайдалануға; көгалдар мен жасыл желектерді суаруға қажетті суды үнемдеуге; экологиялық мәдениетті арттыруға; оқушылар мен қала тұрғындарының су ресурстарын қорғауға деген жауапкершілігін қалыптастыруға мүмкіндік береді.
+                </p>
+
+                <p>
+                    Сонымен қатар жауын суының сапасын тұрақты бақылау үшін зерттеу нәтижелерін интерактивті картада жинақтап, жаңартып отыратын цифрлық мониторинг жүйесін қалыптастыруды ұсынамыз. Біздің мақсатымыз – жауын суын жай ғана қалдық ретінде емес, дұрыс басқарылған жағдайда қаланың су ресурстарын үнемдеуге мүмкіндік беретін қосымша ресурс ретінде қарастыру. «RainSave Almaty» – суды үнемдеу, табиғатты қорғау және Алматының тұрақты болашағына қадам.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap gap-4 mt-8">
+                <a href="#system" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-medium transition">
+                    «RainSave Almaty» макетін көру
+                </a>
+                <a href="#results" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-5 py-2.5 rounded-lg font-medium border border-slate-700 transition">
+                    Химиялық сараптама деректері
+                </a>
+            </div>
+        </div>
+    </section>
 
     <section id="petition" class="relative bg-gradient-to-b from-blue-900 via-slate-900 to-slate-900 text-white py-20">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,7 +89,7 @@
             </h1>
             <p class="text-slate-300 text-lg mb-8 leading-relaxed">
                 <strong>Құрметті Алматы қаласының әкімдігі!</strong><br>
-                №12 мамандандырылған гимназияның зерттеуші авторлары (Алиқұл А., Сманова Е.) Алматы қаласындағы жауын суының химиялық құрамын зерттеп, оның тұрмыстық-техникалық мақсаттарға жарамдылығын ғылыми негізде дәлелдеді.
+                №12 мамандандырылған гимназияның зерттеуші авторлары (Аликул А., Сманова Е.) Алматы қаласындағы жауын суының химиялық құрамын зерттеп, оның тұрмыстық-техникалық мақсаттарға жарамдылығын ғылыми негізде дәлелдеді.
             </p>
 
             <div class="space-y-6 text-slate-200">
